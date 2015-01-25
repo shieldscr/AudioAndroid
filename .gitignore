@@ -17,3 +17,6 @@ gradle-app.setting
 
 ## Directory-based project format:
 .idea/
+
+## OSX crap
+.DS_Store

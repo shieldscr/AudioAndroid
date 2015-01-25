@@ -11,7 +11,7 @@ import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertTrue;
 
-@Config(manifest = "./src/main/AndroidManifest.xml")
+@Config(manifest = "./src/main/AndroidManifest.xml", emulateSdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityRobolectricTest {
 
@@ -22,7 +22,7 @@ public class MainActivityRobolectricTest {
     }
 
     @Test
-    public void canGetMainActivity() throws Exception {
+    public void canGetMainActivity() {
         assertTrue(mainActivity != null);
     }
 
