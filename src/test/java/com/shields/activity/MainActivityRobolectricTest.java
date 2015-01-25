@@ -1,6 +1,9 @@
 package com.shields.activity;
 
 import android.app.Activity;
+import android.widget.Button;
+
+import com.shields.R;
 import com.shields.audioandroid.MainActivity;
 
 import org.junit.Test;
@@ -24,6 +27,12 @@ public class MainActivityRobolectricTest {
     @Test
     public void canGetMainActivity() {
         assertTrue(mainActivity != null);
+    }
+
+    @Test
+    public void canGetRecordButton() {
+        Button recordButton = (Button) mainActivity.findViewById(R.id.recordButton);
+        assertTrue(recordButton != null);
     }
 
 }

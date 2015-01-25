@@ -25,8 +25,8 @@ public class MainEspressoTest extends ActivityInstrumentationTestCase2<MainActiv
         getActivity();
     }
 
-    public void testCheckText() {
-        onView(withId(R.id.text))
-            .check(matches(withText("Hello Espresso!")));
-      }
+//    public void testCheckText() {
+//        onView(withId(R.id.text))
+//            .check(matches(withText("Hello Espresso!")));
+//      }
 }
