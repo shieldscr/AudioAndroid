@@ -29,33 +29,21 @@ public class MainActivityRobolectricTest {
     }
 
     @Test
-    public void whenRecordButtonIsClickedThenRecordingIsStarted() {
+    public void recordButtonExists() {
         Button recordButton = (Button) mainActivity.findViewById(R.id.recordButton);
         assertTrue(recordButton != null);
-
-        recordButton.performClick();
-
-        assertTrue(mainActivity.startRecording());
     }
 
     @Test
-    public void whenRecordButtonIsClickedThenRecordingIsStopped() {
+    public void stopRecordButtonExists() {
         Button stopRecordButton = (Button) mainActivity.findViewById(R.id.stopRecordButton);
         assertTrue(stopRecordButton != null);
-
-        stopRecordButton.performClick();
-
-        assertTrue(mainActivity.stopRecording());
     }
 
     @Test
-    public void whenPlayButtonIsClickedThenPlaybackBegins() {
+    public void playButtonExists() {
         Button playButton = (Button) mainActivity.findViewById(R.id.playButton);
         assertTrue(playButton != null);
-
-        playButton.performClick();
-
-        assertTrue(mainActivity.play());
     }
 
 }
