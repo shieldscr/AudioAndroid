@@ -4,6 +4,7 @@ import com.shields.AudioIOService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -16,7 +17,7 @@ public class AudioIOServiceTest {
     AudioIOService audioIOService;
 
     public AudioIOServiceTest() {
-        audioIOService = new AudioIOService();
+        audioIOService = Robolectric.buildService(AudioIOService.class).create().get();
     }
 
     @Test
