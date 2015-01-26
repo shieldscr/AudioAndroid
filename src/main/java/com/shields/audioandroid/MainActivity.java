@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
     }
 
     public boolean play() {
-        Toast.makeText(getBaseContext(), "Recording Stopped", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Play", Toast.LENGTH_LONG).show();
         return true;
     }
 }
