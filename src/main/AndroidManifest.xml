@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.shields">
 
-    <application android:name="com.shields.AudioAndroidApplication">
+    <application android:name="com.shields.AudioAndroidApplication"
+        android:label="@string/appName">
 
         <activity android:name="com.shields.audioandroid.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
