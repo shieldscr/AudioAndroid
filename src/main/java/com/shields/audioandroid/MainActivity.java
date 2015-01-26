@@ -28,7 +28,16 @@ public class MainActivity extends Activity {
 
     public boolean startRecording() {
         Toast.makeText(getBaseContext(), "Recording", Toast.LENGTH_SHORT).show();
+        return true;
+    }
 
-        return false;
+    public boolean stopRecording() {
+        Toast.makeText(getBaseContext(), "Recording Stopped", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    public boolean play() {
+        Toast.makeText(getBaseContext(), "Recording Stopped", Toast.LENGTH_LONG).show();
+        return true;
     }
 }
