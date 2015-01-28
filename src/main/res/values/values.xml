@@ -2,4 +2,9 @@
 <resources>
     <string name="appName">AudioAndroid</string>
     <string name="recordButtonText">Record</string>
+    <string name="recordingToast">Recording</string>
+    <string name="stopRecordButtonText">Stop Recording</string>
+    <string name="stopRecordingToast">Stopping Recording</string>
+    <string name="playButtonText">Play</string>
+    <string name="playToast">Play</string>
 </resources>
