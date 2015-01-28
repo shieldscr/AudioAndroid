@@ -11,13 +11,11 @@ public class AudioIOUtility {
         Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
     }
 
-    public boolean stopRecording(Context context) {
+    public void stopRecording(Context context) {
         Toast.makeText(context, R.string.stopRecordingToast, Toast.LENGTH_LONG).show();
-        return true;
     }
 
-    public boolean play(Context context) {
-        Toast.makeText(context, "Play", Toast.LENGTH_LONG).show();
-        return true;
+    public void play(Context context) {
+        Toast.makeText(context, R.string.playToast, Toast.LENGTH_LONG).show();
     }
 }
