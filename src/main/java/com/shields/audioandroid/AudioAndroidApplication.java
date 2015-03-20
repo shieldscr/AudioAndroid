@@ -1,4 +1,4 @@
-package com.shields;
+package com.shields.audioandroid;
 
 import android.app.Application;
 
@@ -9,15 +9,18 @@ import dagger.ObjectGraph;
 
 public class AudioAndroidApplication extends Application {
 
-    private ObjectGraph objectGraph;
+    protected ObjectGraph graph;
 
     @Override public void onCreate() {
         super.onCreate();
-        objectGraph = ObjectGraph.create(getModules().toArray());
-        objectGraph.inject(this);
+        graph = ObjectGraph.create(getModules().toArray());
     }
 
-    private List<Object> getModules() {
+    public void inject(Object object) {
+        graph.inject(object);
+    }
+
+    protected List<Object> getModules() {
         return Arrays.<Object>asList(new AudioIOUtilityModule());
     }
 }

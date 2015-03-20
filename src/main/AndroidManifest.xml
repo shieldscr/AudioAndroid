@@ -3,7 +3,7 @@
     package="com.shields" >
 
     <application
-        android:name=".AudioAndroidApplication"
+        android:name=".audioandroid.AudioAndroidApplication"
         android:label="@string/appName" >
         <activity
             android:name=".audioandroid.MainActivity"

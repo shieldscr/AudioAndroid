@@ -1,18 +1,18 @@
 package com.shields.audioandroid;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.shields.AudioIOUtility;
 import com.shields.R;
 
 import javax.inject.Inject;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
-    @Inject public AudioIOUtility audioIOUtility;
+    @Inject
+    AudioIOUtilityInterface audioIOUtilityInterface;
+
     private Button recordButton;
 
     @Override
@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                audioIOUtility.startRecording(getApplicationContext());
+                audioIOUtilityInterface.startRecording(getApplicationContext());
             }
         });
     }

@@ -1,32 +1,31 @@
-package com.shields.activity;
+package com.shields.audioandroid;
 
 import android.content.Context;
 
-import com.shields.AudioIOUtility;
 import com.shields.R;
-import com.shields.audioandroid.MainActivity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowToast;
 
 import static junit.framework.Assert.assertEquals;
 
-@Config(manifest = "./src/main/AndroidManifest.xml", emulateSdk = 21)
+@Config(emulateSdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class AudioIOUtilityTest {
 
     private MainActivity mainActivity;
-    private AudioIOUtility audioIOService;
+    private AudioIOUtilityInterface audioIOService;
     private Context applicationContext;
 
     public AudioIOUtilityTest() {
-        mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
-        audioIOService = new AudioIOUtility();
+        mainActivity = Robolectric.buildActivity(MainActivity.class).create().start().get();
         applicationContext = mainActivity.getApplicationContext();
+        audioIOService = ((TestAudioAndroidApplication) RuntimeEnvironment.application).getTestModule().provideAudioIOUtility();
     }
 
     @Test
