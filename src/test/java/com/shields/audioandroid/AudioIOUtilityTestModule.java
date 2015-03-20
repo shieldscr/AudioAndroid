@@ -11,10 +11,14 @@ import static org.mockito.Mockito.mock;
         overrides = true
 )
 public class AudioIOUtilityTestModule {
+
+    private AudioIOUtilityInterface audioIOUtilityMock = mock(AudioIOUtilityInterface.class);
+
     @Provides
     @Singleton
     public AudioIOUtilityInterface provideAudioIOUtility() {
-        return mock(AudioIOUtilityInterface.class);
+        return audioIOUtilityMock;
     }
+
 }
 

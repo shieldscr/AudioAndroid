@@ -18,21 +18,17 @@ import static org.mockito.Mockito.verify;
 
 @Config(manifest = "./src/main/AndroidManifest.xml", emulateSdk = 21)
 @RunWith(RobolectricTestRunner.class)
-public class MainActivityRobolectricTest {
+public class MainActivityRobolectricTest extends RobolectricTestBase {
 
     private MainActivity mainActivity;
     private Button recordButton;
 
     @Before
     public void setUp() {
+        super.setUp();
         mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
         recordButton = (Button) mainActivity.findViewById(R.id.recordButton);
     }
-
-//    @Test
-//    public void canGetAudioIOUtility() {
-//        assertNotNull(mainActivity.audioIOUtility);
-//    }
 
     @Test
     public void canGetMainActivity() {
@@ -44,11 +40,11 @@ public class MainActivityRobolectricTest {
         assertTrue(recordButton != null);
     }
 
-//    @Test
-//    public void whenRecordButtonIsClickedThenAudioIOUtilityStartsRecording() {
-//        recordButton.performClick();
-//        verify(audioIOUtility, times(1)).startRecording(mainActivity);
-//    }
+    @Test
+    public void whenRecordButtonIsClickedThenAudioIOUtilityStartsRecording() {
+        recordButton.performClick();
+        verify(super.audioIOUtilityTestModule().provideAudioIOUtility()).startRecording(mainActivity.getApplicationContext());
+    }
 
     @Test
     public void stopRecordButtonExists() {

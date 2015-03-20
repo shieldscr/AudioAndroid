@@ -25,7 +25,6 @@ public class TestAudioAndroidApplication extends AudioAndroidApplication {
 
     @Override
     protected List<Object> getModules() {
-
         return Arrays.<Object>asList(testModule);
     }
 }
