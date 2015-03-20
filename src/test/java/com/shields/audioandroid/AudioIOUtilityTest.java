@@ -2,8 +2,6 @@ package com.shields.audioandroid;
 
 import android.content.Context;
 
-import com.shields.R;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,11 +10,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadows.ShadowHandler;
-import org.robolectric.shadows.ShadowToast;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
 
 @Ignore
 @Config(emulateSdk = 21)
