@@ -2,6 +2,8 @@ package com.shields.audioandroid;
 
 import android.app.Application;
 
+import com.shields.audioandroid.modules.AudioIOUtilityModule;
+
 import java.util.Arrays;
 import java.util.List;
 

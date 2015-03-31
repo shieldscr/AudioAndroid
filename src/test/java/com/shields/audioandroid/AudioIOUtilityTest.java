@@ -11,7 +11,7 @@ import org.robolectric.annotation.Config;
 
 import static org.mockito.Mockito.verify;
 
-@Config(manifest = "./src/main/AndroidManifest.xml", emulateSdk = 21)
+@Config(emulateSdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class AudioIOUtilityTest extends RobolectricTestBase {
 
@@ -25,6 +25,7 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
 
     @Test
     public void whenAudioIOUtilityIsInitializedItHasAMediaRecorderWithMicSetAsTheSource() {
+        //Shadow of media recorder
         verify(super.audioIOUtilityTestModule().provideMediaRecorder()).setAudioSource(MediaRecorder.AudioSource.MIC);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility();
     }

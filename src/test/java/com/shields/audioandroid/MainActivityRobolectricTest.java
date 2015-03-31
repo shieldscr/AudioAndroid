@@ -14,7 +14,7 @@ import org.robolectric.annotation.Config;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
-@Config(manifest = "./src/main/AndroidManifest.xml", emulateSdk = 21)
+@Config(emulateSdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityRobolectricTest extends RobolectricTestBase {
 

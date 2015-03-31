@@ -1,5 +1,7 @@
 package com.shields.audioandroid;
 
+import com.shields.audioandroid.modules.AudioIOUtilityTestModule;
+
 import java.util.Arrays;
 import java.util.List;
 
