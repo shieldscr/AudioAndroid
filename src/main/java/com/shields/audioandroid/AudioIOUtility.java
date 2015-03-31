@@ -15,11 +15,13 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
 
     public AudioIOUtility() {
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     }
 
     public AudioIOUtility(MediaRecorder mediaRecorder) {
         this.mediaRecorder = mediaRecorder;
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     }
 
     @Override

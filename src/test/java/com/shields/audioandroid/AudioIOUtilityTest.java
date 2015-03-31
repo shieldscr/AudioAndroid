@@ -25,11 +25,10 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
     }
 
     @Test
-    public void whenAudioIOUtilityIsInitializedItHasAMediaRecorderWithMicSetAsTheSource() {
-        MediaRecorder mediaRecorder = new MediaRecorder();
-        MediaRecorder mediaRecorderSpy = Mockito.spy(mediaRecorder);
-        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderSpy);
-        verify(mediaRecorderSpy).setAudioSource(MediaRecorder.AudioSource.MIC);
+    public void whenAudioIOUtilityIsInitializedItHasAMediaRecorderWithCorrectAudioProperties() {
+        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock);
+        verify(mediaRecorderMock).setAudioSource(MediaRecorder.AudioSource.MIC);
+        verify(mediaRecorderMock).setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     }
-
 }
