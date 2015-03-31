@@ -1,12 +1,20 @@
 package com.shields.audioandroid;
 
 import android.content.Context;
+import android.media.MediaRecorder;
 import android.widget.Toast;
 
 import com.shields.R;
 
+import javax.inject.Inject;
+
 public class AudioIOUtility implements AudioIOUtilityInterface {
+
+    @Inject
+    MediaRecorder mediaRecorder;
+
     public AudioIOUtility() {
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
     }
 
     @Override

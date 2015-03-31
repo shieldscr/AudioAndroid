@@ -1,50 +1,32 @@
 package com.shields.audioandroid;
 
-import android.content.Context;
+import android.media.MediaRecorder;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
-@Ignore
-@Config(emulateSdk = 21)
+import static org.mockito.Mockito.verify;
+
+@Config(manifest = "./src/main/AndroidManifest.xml", emulateSdk = 21)
 @RunWith(RobolectricTestRunner.class)
-public class AudioIOUtilityTest {
+public class AudioIOUtilityTest extends RobolectricTestBase {
 
     private MainActivity mainActivity;
-    private AudioIOUtilityInterface audioIOService;
-    private Context applicationContext;
 
     @Before
     public void setUp() {
-        mainActivity = Robolectric.buildActivity(MainActivity.class).create().start().get();
-        applicationContext = RuntimeEnvironment.application;
-        audioIOService = ((TestAudioAndroidApplication) applicationContext).getTestModule().provideAudioIOUtility();
+        super.setUp();
+        mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
     }
 
-//    @Test
-//    public void recordButtonClickedReturnsDisplaysToastWithCorrectToastText() {
-//        audioIOService.startRecording(applicationContext);
-//        assertNotNull(applicationContext);
-//        ShadowHandler.idleMainLooper();
-//        assertEquals(1, ShadowToast.shownToastCount());
-//        assertEquals(applicationContext.getString(R.string.recordingToast), ShadowToast.getTextOfLatestToast());
-//    }
+    @Test
+    public void whenAudioIOUtilityIsInitializedItHasAMediaRecorderWithMicSetAsTheSource() {
+        verify(super.audioIOUtilityTestModule().provideMediaRecorder()).setAudioSource(MediaRecorder.AudioSource.MIC);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility();
+    }
 
-//    @Test
-//    public void stopRecordButtonClickedDisplaysToastWithCorrectTestText() {
-//        audioIOService.stopRecording(applicationContext);
-//        assertEquals(applicationContext.getString(R.string.stopRecordingToast), ShadowToast.getTextOfLatestToast());
-//    }
-//
-//    @Test
-//    public void playRecordingButtonClickedDisplaysToastWithCorrectTestText() {
-//        audioIOService.play(applicationContext);
-//        assertEquals("Play", ShadowToast.getTextOfLatestToast());
-//    }
 }
