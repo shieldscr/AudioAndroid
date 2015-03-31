@@ -5,6 +5,7 @@ import android.media.MediaRecorder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -25,9 +26,10 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
 
     @Test
     public void whenAudioIOUtilityIsInitializedItHasAMediaRecorderWithMicSetAsTheSource() {
-        //Shadow of media recorder
-        verify(super.audioIOUtilityTestModule().provideMediaRecorder()).setAudioSource(MediaRecorder.AudioSource.MIC);
-        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility();
+        MediaRecorder mediaRecorder = new MediaRecorder();
+        MediaRecorder mediaRecorderSpy = Mockito.spy(mediaRecorder);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderSpy);
+        verify(mediaRecorderSpy).setAudioSource(MediaRecorder.AudioSource.MIC);
     }
 
 }

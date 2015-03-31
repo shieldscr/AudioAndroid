@@ -17,6 +17,11 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
     }
 
+    public AudioIOUtility(MediaRecorder mediaRecorder) {
+        this.mediaRecorder = mediaRecorder;
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+    }
+
     @Override
     public void startRecording(Context context) {
         Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
