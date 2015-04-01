@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.shields.R;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.inject.Inject;
 
@@ -28,20 +29,34 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
 
     @Override
     public void startRecording(Context context) {
-        File cacheDir = context.getCacheDir();
-        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
+        initializeAndStartMediaRecorder(context);
 
-        mediaRecorder.setOutputFile(outputFile.toString());
         Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void stopRecording(Context context) {
+        mediaRecorder.stop();
+        mediaRecorder.release();
+
         Toast.makeText(context, R.string.stopRecordingToast, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void play(Context context) {
         Toast.makeText(context, R.string.playToast, Toast.LENGTH_LONG).show();
+    }
+
+    private void initializeAndStartMediaRecorder(Context context) {
+        File cacheDir = context.getCacheDir();
+        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
+        mediaRecorder.setOutputFile(outputFile.toString());
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        try {
+            mediaRecorder.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mediaRecorder.start();
     }
 }

@@ -11,6 +11,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.mockito.Mockito.verify;
 
@@ -43,10 +44,24 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
     }
 
     @Test
-    public void whenStartRecordingIsCalledThenMediaRecorderHasTheCorrectFileOutputPathSet() {
+    public void whenStartRecordingIsCalledThenMediaRecorderHasTheCorrectFileOutputPathSet() throws IOException {
         MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock);
         localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
+
         verify(mediaRecorderMock).setOutputFile(outputFile.toString());
+        verify(mediaRecorderMock).setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        verify(mediaRecorderMock).prepare();
+        verify(mediaRecorderMock).start();
+    }
+
+    @Test
+    public void whenStopRecordingIsCalledThenMediaRecorderIsStoppedAndReleased() {
+        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock);
+        localAudioIOUtility.stopRecording(mainActivity.getApplicationContext());
+
+        verify(mediaRecorderMock).stop();
+        verify(mediaRecorderMock).release();
     }
 }
