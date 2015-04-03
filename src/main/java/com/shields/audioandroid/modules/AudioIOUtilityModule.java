@@ -1,5 +1,6 @@
 package com.shields.audioandroid.modules;
 
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 
 import com.shields.audioandroid.AudioIOUtility;
@@ -25,6 +26,12 @@ public class AudioIOUtilityModule {
     @Singleton
     public MediaRecorder provideMediaRecorder() {
         return new MediaRecorder();
+    }
+
+    @Provides
+    @Singleton
+    public MediaPlayer provideMediaPlayer() {
+        return new MediaPlayer();
     }
 
 }

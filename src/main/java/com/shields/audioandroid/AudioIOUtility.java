@@ -1,6 +1,7 @@
 package com.shields.audioandroid;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.widget.Toast;
 
@@ -16,13 +17,17 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     @Inject
     MediaRecorder mediaRecorder;
 
+    @Inject
+    MediaPlayer mediaPlayer;
+
     public AudioIOUtility() {
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     }
 
-    public AudioIOUtility(MediaRecorder mediaRecorder) {
+    public AudioIOUtility(MediaRecorder mediaRecorder, MediaPlayer mediaPlayer) {
         this.mediaRecorder = mediaRecorder;
+        this.mediaPlayer = mediaPlayer;
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     }
@@ -30,7 +35,6 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     @Override
     public void startRecording(Context context) {
         initializeAndStartMediaRecorder(context);
-
         Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
     }
 
@@ -44,6 +48,15 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
 
     @Override
     public void play(Context context) {
+        File cacheDir = context.getCacheDir();
+        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
+        try {
+            mediaPlayer.setDataSource(outputFile.toString());
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Toast.makeText(context, R.string.playToast, Toast.LENGTH_LONG).show();
     }
 
