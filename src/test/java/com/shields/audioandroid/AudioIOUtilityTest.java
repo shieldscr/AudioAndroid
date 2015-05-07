@@ -3,6 +3,8 @@ package com.shields.audioandroid;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 
+import com.shields.BuildConfig;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,7 @@ import java.io.IOException;
 
 import static org.mockito.Mockito.verify;
 
-@Config(emulateSdk = 21)
+@Config(sdk = 21, constants = BuildConfig.class)
 @RunWith(RobolectricTestRunner.class)
 public class AudioIOUtilityTest extends RobolectricTestBase {
 

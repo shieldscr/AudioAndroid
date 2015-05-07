@@ -2,6 +2,7 @@ package com.shields.audioandroid;
 
 import android.widget.Button;
 
+import com.shields.BuildConfig;
 import com.shields.R;
 
 import org.junit.Before;
@@ -14,7 +15,7 @@ import org.robolectric.annotation.Config;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
-@Config(emulateSdk = 21)
+@Config(sdk = 21, constants = BuildConfig.class)
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityRobolectricTest extends RobolectricTestBase {
 
