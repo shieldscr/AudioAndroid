@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.Times;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -16,6 +17,7 @@ import org.robolectric.annotation.Config;
 import java.io.File;
 import java.io.IOException;
 
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @Config(sdk = 21, constants = BuildConfig.class)
@@ -80,4 +82,32 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
         verify(localMediaPlayerMock).prepare();
         verify(localMediaPlayerMock).start();
     }
+
+    @Test
+    public void whenAudioIOUtilityIsRecordingThenItCannotBeStartedAgain() {
+        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
+
+        localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
+        localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
+        verify(mediaRecorderMock, times(1)).start();
+    }
+
+    @Test
+    public void recordingCanBeStartedStoppedAndRestarted() {
+        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
+
+        localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
+        localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
+        verify(mediaRecorderMock, times(1)).start();
+
+        Mockito.reset(mediaRecorderMock);
+        localAudioIOUtility.stopRecording(mainActivity.getApplicationContext());
+        localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
+        verify(mediaRecorderMock).start();
+    }
+
 }

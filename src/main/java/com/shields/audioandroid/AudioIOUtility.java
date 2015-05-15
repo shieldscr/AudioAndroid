@@ -14,6 +14,8 @@ import javax.inject.Inject;
 
 public class AudioIOUtility implements AudioIOUtilityInterface {
 
+    private boolean isRecording = false;
+
     @Inject
     MediaRecorder mediaRecorder;
 
@@ -34,14 +36,17 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
 
     @Override
     public void startRecording(Context context) {
-        initializeAndStartMediaRecorder(context);
-        Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
+        if (!isRecording) {
+            initializeAndStartMediaRecorder(context);
+            Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void stopRecording(Context context) {
         mediaRecorder.stop();
         mediaRecorder.release();
+        isRecording = false;
 
         Toast.makeText(context, R.string.stopRecordingToast, Toast.LENGTH_LONG).show();
     }
@@ -71,5 +76,6 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
             e.printStackTrace();
         }
         mediaRecorder.start();
+        isRecording = true;
     }
 }
