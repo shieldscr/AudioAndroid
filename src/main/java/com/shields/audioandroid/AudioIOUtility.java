@@ -16,17 +16,10 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
 
     private boolean isRecording = false;
 
-    @Inject
     MediaRecorder mediaRecorder;
-
-    @Inject
     MediaPlayer mediaPlayer;
 
-    public AudioIOUtility() {
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-    }
-
+    @Inject
     public AudioIOUtility(MediaRecorder mediaRecorder, MediaPlayer mediaPlayer) {
         this.mediaRecorder = mediaRecorder;
         this.mediaPlayer = mediaPlayer;

@@ -18,8 +18,8 @@ import dagger.Provides;
 public class AudioIOUtilityModule {
     @Provides
     @Singleton
-    public AudioIOUtilityInterface provideAudioIOUtility() {
-        return new AudioIOUtility();
+    public AudioIOUtilityInterface provideAudioIOUtility(AudioIOUtility audioIOUtility) {
+        return audioIOUtility;
     }
 
     @Provides
