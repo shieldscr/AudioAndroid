@@ -20,7 +20,7 @@ import java.io.IOException;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@Config(sdk = 21, constants = BuildConfig.class)
+@Config(sdk = 21)
 @RunWith(RobolectricTestRunner.class)
 public class AudioIOUtilityTest extends RobolectricTestBase {
 
