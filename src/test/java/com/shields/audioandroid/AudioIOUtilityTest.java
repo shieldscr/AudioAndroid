@@ -9,9 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.internal.verification.Times;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.io.File;
@@ -20,8 +19,8 @@ import java.io.IOException;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@Config(sdk = 21)
-@RunWith(RobolectricTestRunner.class)
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class)
 public class AudioIOUtilityTest extends RobolectricTestBase {
 
     private File outputFile;
