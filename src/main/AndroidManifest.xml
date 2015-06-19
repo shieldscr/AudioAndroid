@@ -9,7 +9,8 @@
         android:label="@string/appName" >
         <activity
             android:name=".audioandroid.MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Material.Light.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
