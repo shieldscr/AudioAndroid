@@ -12,6 +12,9 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
@@ -20,13 +23,16 @@ import static org.mockito.Mockito.verify;
 public class MainActivityRobolectricTest extends RobolectricTestBase {
 
     private MainActivity mainActivity;
-    private Button recordButton;
+
+    @InjectView(R.id.recordButton)
+    Button recordButton;
 
     @Before
     public void setUp() {
         super.setUp();
         mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
         recordButton = (Button) mainActivity.findViewById(R.id.recordButton);
+        ButterKnife.inject(this, mainActivity);
     }
 
     @Test
@@ -43,18 +49,6 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
     public void whenRecordButtonIsClickedThenAudioIOUtilityStartsRecording() {
         recordButton.performClick();
         verify(super.audioIOUtilityTestModule().provideAudioIOUtility()).startRecording(mainActivity.getApplicationContext());
-    }
-
-    @Test
-    public void stopRecordButtonExists() {
-        Button stopRecordButton = (Button) mainActivity.findViewById(R.id.stopRecordButton);
-        assertTrue(stopRecordButton != null);
-    }
-
-    @Test
-    public void playButtonExists() {
-        Button playButton = (Button) mainActivity.findViewById(R.id.playButton);
-        assertTrue(playButton != null);
     }
 
 }
