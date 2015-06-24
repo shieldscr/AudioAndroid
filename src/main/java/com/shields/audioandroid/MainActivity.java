@@ -8,23 +8,19 @@ import com.shields.R;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 public class MainActivity extends BaseActivity {
 
     @Inject
     AudioIOUtilityInterface audioIOUtilityInterface;
 
-    @InjectView(R.id.recordButton)
-    Button recordButton;
+    private Button recordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ButterKnife.inject(this);
 
+        recordButton = (Button)findViewById(R.id.recordButton);
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

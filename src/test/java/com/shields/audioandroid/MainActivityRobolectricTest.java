@@ -12,9 +12,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
@@ -24,15 +21,13 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
 
     private MainActivity mainActivity;
 
-    @InjectView(R.id.recordButton)
-    Button recordButton;
+    private Button recordButton;
 
     @Before
     public void setUp() {
         super.setUp();
         mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
         recordButton = (Button) mainActivity.findViewById(R.id.recordButton);
-        ButterKnife.inject(this, mainActivity);
     }
 
     @Test
