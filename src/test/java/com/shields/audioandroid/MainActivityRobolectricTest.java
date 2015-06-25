@@ -54,4 +54,11 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
         assertEquals((mainActivity.getString(R.string.recordButtonText) + " (8)"), recordButton.getText().toString());
     }
 
+    @Test
+    public void whenTheRecordButtonIsClickedThenItIsNoLongerClickable() {
+        assertEquals(true, recordButton.isClickable());
+        recordButton.performClick();
+        assertEquals(false, recordButton.isClickable());
+    }
+
 }

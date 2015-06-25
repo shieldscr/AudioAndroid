@@ -31,6 +31,8 @@ public class MainActivity extends BaseActivity {
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                recordButton.setClickable(false);
+
                 animateRecordButton();
                 startButtonCountdownTimer();
 
@@ -48,7 +50,7 @@ public class MainActivity extends BaseActivity {
         buttonMoveAnimation.setFillAfter(true);
         recordButton.startAnimation(buttonMoveAnimation);
 
-        ObjectAnimator animator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#00CDCD"), Color.parseColor("#EEE685")).setDuration(3000);
+        ObjectAnimator animator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#EF5350"), Color.parseColor("#FFE082")).setDuration(4000);
         animator.setEvaluator(new ArgbEvaluator());
         animator.start();
 
@@ -59,7 +61,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                ObjectAnimator pauseAnimator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#EEE685"), Color.parseColor("#FF7256")).setDuration(3000);
+                ObjectAnimator pauseAnimator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#FFE082"), Color.parseColor("#81C784")).setDuration(4000);
                 pauseAnimator.setEvaluator(new ArgbEvaluator());
                 pauseAnimator.start();
             }
