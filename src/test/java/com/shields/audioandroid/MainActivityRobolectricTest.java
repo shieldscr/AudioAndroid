@@ -12,6 +12,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
@@ -44,6 +45,13 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
     public void whenRecordButtonIsClickedThenAudioIOUtilityStartsRecording() {
         recordButton.performClick();
         verify(super.audioIOUtilityTestModule().provideAudioIOUtility()).startRecording(mainActivity.getApplicationContext());
+    }
+
+    @Test
+    public void whenRecordButtonIsClickedThenATimerStartsAndDisplaysTheStartingTimeOnTheButton() {
+        assertEquals(mainActivity.getString(R.string.recordButtonText), recordButton.getText().toString());
+        recordButton.performClick();
+        assertEquals((mainActivity.getString(R.string.recordButtonText) + " (8)"), recordButton.getText().toString());
     }
 
 }
