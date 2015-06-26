@@ -69,27 +69,7 @@ public class MainActivity extends BaseActivity {
         animator.setEvaluator(new ArgbEvaluator());
         animator.start();
 
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                ObjectAnimator pauseAnimator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#FFE082"), Color.parseColor("#81C784")).setDuration(4000);
-                pauseAnimator.setEvaluator(new ArgbEvaluator());
-                pauseAnimator.start();
-                recordArrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-            }
-        });
+        animator.addListener(new RecordButtonSecondaryAnimation());
     }
 
     private void startButtonCountdownTimer() {
@@ -104,5 +84,50 @@ public class MainActivity extends BaseActivity {
                 recordButton.setText("Playing");
             }
         }.start();
+    }
+
+    private class RecordButtonMainAnimation implements Animator.AnimatorListener {
+
+        @Override
+        public void onAnimationStart(Animator animator) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            recordArrayAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animator) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animator) {
+
+        }
+    }
+
+    private class RecordButtonSecondaryAnimation implements Animator.AnimatorListener {
+        @Override
+        public void onAnimationStart(Animator animator) {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            ObjectAnimator pauseAnimator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#FFE082"), Color.parseColor("#81C784")).setDuration(4000);
+            pauseAnimator.setEvaluator(new ArgbEvaluator());
+            pauseAnimator.start();
+            pauseAnimator.addListener(new RecordButtonMainAnimation());
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animator) {
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animator) {
+        }
     }
 }

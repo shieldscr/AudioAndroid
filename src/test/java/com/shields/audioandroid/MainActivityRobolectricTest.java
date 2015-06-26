@@ -71,7 +71,7 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
         assertEquals(0, playingListView.getAdapter().getCount());
         recordButton.performClick();
         assertEquals(1, playingListView.getAdapter().getCount());
-        assertEquals("Loop 1", playingListView.getAdapter().getItem(1).toString());
+        assertEquals("Loop 1", playingListView.getAdapter().getItem(0).toString());
     }
 
 }
