@@ -1,6 +1,7 @@
 package com.shields.audioandroid;
 
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.shields.BuildConfig;
 import com.shields.R;
@@ -13,6 +14,7 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
@@ -59,6 +61,17 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
         assertEquals(true, recordButton.isClickable());
         recordButton.performClick();
         assertEquals(false, recordButton.isClickable());
+    }
+
+    @Test
+    public void whenTheRecordButtonIsPressedThenARecordingIsAddedToThePlayingList() {
+        ListView playingListView = (ListView) mainActivity.findViewById(R.id.recordListView);
+        assertNotNull(playingListView);
+
+        assertEquals(0, playingListView.getAdapter().getCount());
+        recordButton.performClick();
+        assertEquals(1, playingListView.getAdapter().getCount());
+        assertEquals("Loop 1", playingListView.getAdapter().getItem(1).toString());
     }
 
 }

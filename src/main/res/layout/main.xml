@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:background="#303030">
 
+    <ListView
+        android:id="@+id/recordListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+    
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -16,6 +22,7 @@
         android:id="@+id/recordButton"
         android:background="#EF5350"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true">
+       </Button>
 
 </RelativeLayout>
