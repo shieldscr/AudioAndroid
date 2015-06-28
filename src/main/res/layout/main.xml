@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:background="#303030">
 
-    <ListView
-        android:id="@+id/recordListView"
+    <RecyclerView
+        android:id="@+id/recordRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </ListView>
+    </RecyclerView>
     
     <Button
         android:layout_width="fill_parent"

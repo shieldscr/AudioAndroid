@@ -40,6 +40,8 @@ dependencies {
         mavenCentral()
     }
 
+    compile 'com.android.support:recyclerview-v7:21.0.0'
+
     // Dagger
     compile 'com.squareup.dagger:dagger-compiler:1.2.2'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
