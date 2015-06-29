@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="#303030">
 
-    <view
+    <android.support.v7.widget.RecyclerView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        class="android.support.v7.widget.RecyclerView"
         android:id="@+id/recordRecyclerView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        />
     
     <Button
         android:layout_width="fill_parent"

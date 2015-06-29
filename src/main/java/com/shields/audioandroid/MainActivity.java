@@ -11,9 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.shields.R;
 import com.shields.audioandroid.adapters.LoopListViewAdapter;
@@ -37,7 +35,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.main);
 
         loops = new ArrayList<>();
-        recordArrayAdapter = new LoopListViewAdapter(loops);
+        recordArrayAdapter = new LoopListViewAdapter(loops, getApplicationContext());
 
         recordButton = (Button)findViewById(R.id.recordButton);
         recordButton.setOnClickListener(new View.OnClickListener() {
