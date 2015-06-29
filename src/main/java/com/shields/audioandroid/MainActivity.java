@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.Animation;
@@ -36,7 +37,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.main);
 
         loops = new ArrayList<>();
-        recordArrayAdapter = new LoopListViewAdapter();
+        recordArrayAdapter = new LoopListViewAdapter(loops);
 
         recordButton = (Button)findViewById(R.id.recordButton);
         recordButton.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +55,8 @@ public class MainActivity extends BaseActivity {
         });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recordRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(recordArrayAdapter);
-
     }
 
     private void animateRecordButton() {

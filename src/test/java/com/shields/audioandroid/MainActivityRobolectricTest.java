@@ -1,10 +1,11 @@
 package com.shields.audioandroid;
 
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.shields.BuildConfig;
 import com.shields.R;
+import com.shields.audioandroid.adapters.LoopListViewAdapter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -65,13 +66,15 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
 
     @Test
     public void whenTheRecordButtonIsPressedThenARecordingIsAddedToThePlayingList() {
-        ListView playingListView = (ListView) mainActivity.findViewById(R.id.recordListView);
+        RecyclerView playingListView = (RecyclerView) mainActivity.findViewById(R.id.recordRecyclerView);
         assertNotNull(playingListView);
 
-        assertEquals(0, playingListView.getAdapter().getCount());
+        assertEquals(0, playingListView.getAdapter().getItemCount());
         recordButton.performClick();
-        assertEquals(1, playingListView.getAdapter().getCount());
-        assertEquals("Loop 1", playingListView.getAdapter().getItem(0).toString());
+        assertEquals(1, playingListView.getAdapter().getItemCount());
+
+        LoopListViewAdapter loopAdapter = (LoopListViewAdapter) playingListView.getAdapter();
+        assertEquals("Loop 1", loopAdapter.getLoopListItem(0));
     }
 
 }

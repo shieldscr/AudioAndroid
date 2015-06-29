@@ -4,43 +4,46 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.shields.R;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
-public class LoopListViewAdapter extends RecyclerView.Adapter {
+public class LoopListViewAdapter extends RecyclerView.Adapter<LoopListViewAdapter.LoopListViewHolder> {
+    private ArrayList dataset;
 
-    ArrayList<String> dataSet;
-    private LayoutInflater mInflater;
-
-    public LoopListViewAdapter(ArrayList<String> dataSet) {
-        this.dataSet = dataSet;
+    public LoopListViewAdapter(ArrayList myDataset) {
+        dataset = myDataset;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new LoopListViewHolder(
-                mInflater.inflate(R.layout.main, viewGroup, false)
-        );
+    public LoopListViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.loop_text_view, null);
+        LoopListViewHolder mh = new LoopListViewHolder(v);
+        return mh;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-//        viewHolder.s.setText(mDataset[position]);
-
+    public void onBindViewHolder(LoopListViewHolder holder, int position) {
+        holder.loopTitle.setText(dataset.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return dataSet.size();
+        return dataset.size();
     }
 
+    public String getLoopListItem(int index) {
+        return dataset.get(index).toString();
+    }
 
-    private class LoopListViewHolder extends RecyclerView.ViewHolder {
-        public LoopListViewHolder(View itemView) {
-            super(itemView);
+    protected class LoopListViewHolder extends RecyclerView.ViewHolder {
+        protected TextView loopTitle;
+
+        public LoopListViewHolder(View view) {
+            super(view);
+            this.loopTitle = (TextView) view.findViewById(R.id.loop_text_view);
         }
     }
 }
