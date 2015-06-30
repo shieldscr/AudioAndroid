@@ -5,12 +5,11 @@
     android:orientation="horizontal"
     android:padding="2dp"
     android:gravity="center_vertical"
-
     android:focusable="true"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
@@ -18,8 +17,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:id="@+id/loop_text_view"
         android:textColor="#ffffff"
-        android:textSize="24dp"
-
+        android:textSize="24sp"
         android:focusable="true"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground">

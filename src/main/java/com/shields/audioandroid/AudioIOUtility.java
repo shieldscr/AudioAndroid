@@ -31,7 +31,6 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     public void startRecording(Context context) {
         if (!isRecording) {
             initializeAndStartMediaRecorder(context);
-            Toast.makeText(context, R.string.recordingToast, Toast.LENGTH_SHORT).show();
         }
     }
 
