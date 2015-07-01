@@ -39,8 +39,6 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
         mediaRecorder.stop();
         mediaRecorder.release();
         isRecording = false;
-
-        Toast.makeText(context, R.string.stopRecordingToast, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -54,7 +52,6 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Toast.makeText(context, R.string.playToast, Toast.LENGTH_LONG).show();
     }
 
     private void initializeAndStartMediaRecorder(Context context) {
