@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,17 +59,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void animateRecordButton() {
-        Animation buttonMoveAnimation = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
-                , Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_PARENT, -0.35f);
-        buttonMoveAnimation.setRepeatMode(0);
-        buttonMoveAnimation.setDuration(8000);
-        buttonMoveAnimation.setFillAfter(true);
-        recordButton.startAnimation(buttonMoveAnimation);
+        AnimationTask animationTask = new AnimationTask();
+        animationTask.doInBackground();
 
         ObjectAnimator animator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#EF5350"), Color.parseColor("#FFE082")).setDuration(4000);
-        animator.setEvaluator(new ArgbEvaluator());
-        animator.start();
+        BackgroundColorAnimationTask backgroundColorAnimationTask = new BackgroundColorAnimationTask();
+        backgroundColorAnimationTask.doInBackground(animator);
 
         animator.addListener(new RecordButtonSecondaryAnimation());
     }
@@ -131,6 +127,32 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onAnimationRepeat(Animator animator) {
+        }
+    }
+
+    private class AnimationTask extends AsyncTask<Integer, Integer, Integer> {
+
+        @Override
+        protected Integer doInBackground(Integer... integers) {
+            Animation buttonMoveAnimation = new TranslateAnimation(
+                    Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
+                    , Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_PARENT, -0.35f);
+            buttonMoveAnimation.setRepeatMode(0);
+            buttonMoveAnimation.setDuration(8000);
+            buttonMoveAnimation.setFillAfter(true);
+            recordButton.startAnimation(buttonMoveAnimation);
+            return null;
+        }
+
+    }
+
+    private class BackgroundColorAnimationTask extends AsyncTask<ObjectAnimator, Integer, Integer> {
+
+        @Override
+        protected Integer doInBackground(ObjectAnimator... objectAnimators) {
+            objectAnimators[0].setEvaluator(new ArgbEvaluator());
+            objectAnimators[0].start();
+            return null;
         }
     }
 }
