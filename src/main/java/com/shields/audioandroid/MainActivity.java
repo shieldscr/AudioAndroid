@@ -83,6 +83,8 @@ public class MainActivity extends BaseActivity {
 
             public void onFinish() {
                 recordButton.setText("Playing");
+                audioIOUtilityInterface.stopRecording(getApplicationContext());
+                audioIOUtilityInterface.play(getApplicationContext());
             }
         }.start();
     }
