@@ -41,7 +41,8 @@ dependencies {
     }
 
     compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.android.support:recyclerview-v7:21.0.0'
+    compile 'com.android.support:recyclerview-v7:22.2.+'
+
 
     // Dagger
     compile 'com.squareup.dagger:dagger-compiler:1.2.2'

@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.shields.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class LoopListViewAdapter extends RecyclerView.Adapter<LoopListViewAdapter.LoopListViewHolder> {
@@ -43,6 +45,11 @@ public class LoopListViewAdapter extends RecyclerView.Adapter<LoopListViewAdapte
 
     public String getLoopListItem(int index) {
         return dataset.get(index).toString();
+    }
+
+    public void removeLoopListItem(int index) {
+        dataset.remove(index);
+        this.notifyDataSetChanged();
     }
 
     private void setAnimation(View viewToAnimate, int position) {

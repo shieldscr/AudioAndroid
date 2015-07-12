@@ -2,6 +2,7 @@ package com.shields.audioandroid;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.shields.BuildConfig;
 import com.shields.R;
@@ -75,6 +76,21 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
 
         LoopListViewAdapter loopAdapter = (LoopListViewAdapter) playingListView.getAdapter();
         assertEquals("Loop 1", loopAdapter.getLoopListItem(0));
+    }
+
+    @Test
+    public void recordLoopCanBeRemoved() {
+        RecyclerView playingListView = (RecyclerView) mainActivity.findViewById(R.id.recordRecyclerView);
+
+        assertEquals(0, playingListView.getAdapter().getItemCount());
+        recordButton.performClick();
+        assertEquals(1, playingListView.getAdapter().getItemCount());
+
+        LoopListViewAdapter loopAdapter = (LoopListViewAdapter) playingListView.getAdapter();
+
+        loopAdapter.removeLoopListItem(0);
+
+        assertEquals(0, playingListView.getAdapter().getItemCount());
     }
 
 }
