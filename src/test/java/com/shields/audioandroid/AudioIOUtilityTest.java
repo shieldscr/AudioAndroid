@@ -42,27 +42,24 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
 
     @Test
     public void whenAudioIOUtilityIsInitializedItHasAMediaRecorderWithCorrectAudioProperties() {
-        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, mediaPlayerMock);
-        verify(mediaRecorderMock).setAudioSource(MediaRecorder.AudioSource.MIC);
-        verify(mediaRecorderMock).setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
     }
 
     @Test
     public void whenStartRecordingIsCalledThenMediaRecorderHasTheCorrectFileOutputPathSet() throws IOException {
-        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, mediaPlayerMock);
         localAudioIOUtility.startRecording(mainActivity.getApplicationContext());
 
         verify(mediaRecorderMock).setOutputFile(outputFile.toString());
-        verify(mediaRecorderMock).setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         verify(mediaRecorderMock).prepare();
         verify(mediaRecorderMock).start();
     }
 
     @Test
     public void whenStopRecordingIsCalledThenMediaRecorderIsStoppedAndReleased() {
-        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, mediaPlayerMock);
         localAudioIOUtility.stopRecording(mainActivity.getApplicationContext());
 
@@ -72,7 +69,7 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
 
     @Test
     public void whenAudioIOUtilityIsInitializedThenItHasAMediaPlayerSetupCorrectly() throws IOException {
-        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
         MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
 
@@ -84,7 +81,7 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
 
     @Test
     public void whenAudioIOUtilityIsRecordingThenItCannotBeStartedAgain() {
-        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
         MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
 
@@ -95,7 +92,7 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
 
     @Test
     public void recordingCanBeStartedStoppedAndRestarted() {
-        MediaRecorder mediaRecorderMock = Mockito.mock(MediaRecorder.class);
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
         MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
 

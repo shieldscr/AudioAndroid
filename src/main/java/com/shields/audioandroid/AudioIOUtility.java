@@ -22,10 +22,9 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     MediaPlayer mediaPlayer;
 
     @Inject
-    public AudioIOUtility(MediaRecorder mediaRecorder, MediaPlayer mediaPlayer) {
-//        this.mediaRecorder = mediaRecorder;
+    public AudioIOUtility(RehearsalAudioRecorder mediaRecorder, MediaPlayer mediaPlayer) {
+        this.mediaRecorder = mediaRecorder;
         this.mediaPlayer = mediaPlayer;
-        this.mediaRecorder = new RehearsalAudioRecorder(RehearsalAudioRecorder.RECORDING_UNCOMPRESSED, MediaRecorder.AudioSource.MIC, 44100, AudioFormat.CHANNEL_CONFIGURATION_STEREO, AudioFormat.ENCODING_PCM_16BIT);
     }
 
     @Override
