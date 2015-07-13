@@ -119,4 +119,9 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
         verify(localMediaPlayerMock).release();
     }
 
+    @Test
+    public void whenStopPlayingIsCalledThenOutputFileIsDeleted() {
+
+    }
+
 }

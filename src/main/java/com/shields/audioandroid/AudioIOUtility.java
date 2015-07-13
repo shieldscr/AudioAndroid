@@ -1,14 +1,9 @@
 package com.shields.audioandroid;
 
 import android.content.Context;
-import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
-import android.widget.Toast;
-
-import com.shields.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,6 +63,7 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
 
         File cacheDir = context.getCacheDir();
         File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
+        outputFile.deleteOnExit();
         mediaRecorder.setOutputFile(outputFile.toString());
 
         mediaRecordTask.doInBackground();
