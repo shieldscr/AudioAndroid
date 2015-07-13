@@ -1,6 +1,7 @@
 package com.shields.audioandroid;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -92,5 +93,4 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
 
         assertEquals(0, playingListView.getAdapter().getItemCount());
     }
-
 }

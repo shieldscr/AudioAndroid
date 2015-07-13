@@ -8,4 +8,6 @@ public interface AudioIOUtilityInterface {
     void stopRecording(Context context);
 
     void play(Context context);
+
+    void stopPlaying(Context context);
 }

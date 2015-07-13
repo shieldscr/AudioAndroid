@@ -168,6 +168,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                audioIOUtilityInterface.stopPlaying(getApplicationContext());
                 loops.remove(0);
                 recordArrayAdapter.notifyDataSetChanged();
             }
