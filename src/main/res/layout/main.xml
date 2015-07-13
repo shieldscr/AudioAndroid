@@ -11,19 +11,20 @@
         android:layout_height="fill_parent"
         android:id="@+id/recordRecyclerView"
         android:layout_alignParentStart="true"
+        android:background="?android:attr/selectableItemBackground"
         />
     
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200sp"
         android:text="@string/recordButtonText"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         android:textColor="#ffffff"
         android:id="@+id/recordButton"
         android:background="#EF5350"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:layout_alignBottom="@id/recordRecyclerView"
+        android:layout_centerHorizontal="true">
        </Button>
 
 </RelativeLayout>

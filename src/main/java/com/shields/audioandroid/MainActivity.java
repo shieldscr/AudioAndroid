@@ -55,15 +55,13 @@ public class MainActivity extends BaseActivity {
         });
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recordRecyclerView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(recordArrayAdapter);
         addSwipeToRemove(recyclerView);
     }
 
     private void animateRecordButton() {
-        AnimationTask animationTask = new AnimationTask();
-        animationTask.doInBackground();
-
         ObjectAnimator animator = ObjectAnimator.ofInt(recordButton, "backgroundColor", Color.parseColor("#EF5350"), Color.parseColor("#FFE082")).setDuration(4000);
         BackgroundColorAnimationTask backgroundColorAnimationTask = new BackgroundColorAnimationTask();
         backgroundColorAnimationTask.doInBackground(animator);
@@ -130,22 +128,6 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onAnimationRepeat(Animator animator) {
         }
-    }
-
-    private class AnimationTask extends AsyncTask<Integer, Integer, Integer> {
-
-        @Override
-        protected Integer doInBackground(Integer... integers) {
-            Animation buttonMoveAnimation = new TranslateAnimation(
-                    Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
-                    , Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_PARENT, -0.35f);
-            buttonMoveAnimation.setRepeatMode(0);
-            buttonMoveAnimation.setDuration(8000);
-            buttonMoveAnimation.setFillAfter(true);
-            recordButton.startAnimation(buttonMoveAnimation);
-            return null;
-        }
-
     }
 
     private class BackgroundColorAnimationTask extends AsyncTask<ObjectAnimator, Integer, Integer> {

@@ -12,15 +12,12 @@
     <TextView
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:id="@+id/loop_text_view"
         android:textColor="#ffffff"
-        android:textSize="24sp"
+        android:textSize="40sp"
+        android:textStyle="bold"
         android:focusable="true"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:clickable="true">
     </TextView>
 
 </LinearLayout>
