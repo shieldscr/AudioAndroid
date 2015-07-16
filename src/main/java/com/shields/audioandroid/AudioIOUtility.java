@@ -24,7 +24,7 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     }
 
     @Override
-    public void startRecording(Context context) {
+    public void startRecording(Context context, Integer loopCount) {
         if (!isRecording) {
             initializeAndStartMediaRecorder(context);
         }

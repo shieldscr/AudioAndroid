@@ -11,8 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 
 import com.shields.R;
@@ -30,35 +28,42 @@ public class MainActivity extends BaseActivity {
     private Button recordButton;
     private RecyclerView.Adapter recordArrayAdapter;
     private ArrayList<String> loops;
+    private Integer loopCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        setupRecordButton();
+
         loops = new ArrayList<>();
         recordArrayAdapter = new LoopListViewAdapter(loops, getApplicationContext());
 
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recordRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(recordArrayAdapter);
+        addSwipeToRemove(recyclerView);
+    }
+
+    private void setupRecordButton() {
         recordButton = (Button)findViewById(R.id.recordButton);
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loopCount = 0;
                 recordButton.setClickable(false);
 
-                loops.add("Loop 1");
+
+                Integer loopString = loopCount + 1;
+                loops.add("Playing loop" + " " + loopString.toString());
 
                 animateRecordButton();
                 startButtonCountdownTimer();
 
-                audioIOUtilityInterface.startRecording(getApplicationContext());
+                audioIOUtilityInterface.startRecording(getApplicationContext(), loopCount);
             }
         });
-
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recordRecyclerView);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(recordArrayAdapter);
-        addSwipeToRemove(recyclerView);
     }
 
     private void animateRecordButton() {
@@ -78,11 +83,16 @@ public class MainActivity extends BaseActivity {
             }
 
             public void onFinish() {
-                recordButton.setText("Playing");
+                recordButton.setText(R.string.recordButtonText);
                 audioIOUtilityInterface.stopRecording(getApplicationContext());
                 audioIOUtilityInterface.play(getApplicationContext());
+                setupNextRecordingButton();
             }
         }.start();
+    }
+
+    private void setupNextRecordingButton() {
+        recordButton.setClickable(true);
     }
 
     private class RecordButtonMainAnimation implements Animator.AnimatorListener {

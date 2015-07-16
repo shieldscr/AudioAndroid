@@ -1,9 +1,7 @@
 package com.shields.audioandroid;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.shields.BuildConfig;
 import com.shields.R;
@@ -49,7 +47,7 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
     @Test
     public void whenRecordButtonIsClickedThenAudioIOUtilityStartsRecording() {
         recordButton.performClick();
-        verify(super.audioIOUtilityTestModule().provideAudioIOUtility()).startRecording(mainActivity.getApplicationContext());
+        verify(super.audioIOUtilityTestModule().provideAudioIOUtility()).startRecording(mainActivity.getApplicationContext(), 0);
     }
 
     @Test
@@ -76,7 +74,7 @@ public class MainActivityRobolectricTest extends RobolectricTestBase {
         assertEquals(1, playingListView.getAdapter().getItemCount());
 
         LoopListViewAdapter loopAdapter = (LoopListViewAdapter) playingListView.getAdapter();
-        assertEquals("Loop 1", loopAdapter.getLoopListItem(0));
+        assertEquals("Playing loop 1", loopAdapter.getLoopListItem(0));
     }
 
     @Test
