@@ -118,20 +118,4 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
         verify(localMediaPlayerMock).release();
     }
 
-    @Test
-    public void whenRecordIsCalledASecondTimeThenANewMediaRecorderIsInitialized() {
-        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
-        MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
-        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
-
-        verify(mediaRecorderMock).setOutputFile(outputFile.toString());
-        verify(mediaRecorderMock).prepare();
-        verify(mediaRecorderMock).start();
-
-        localAudioIOUtility.startRecording(mainActivity.getApplicationContext(), 1);
-
-        verify(mediaRecorderMock).setOutputFile(outputFile.toString() + "_1");
-        verify(mediaRecorderMock).prepare();
-        verify(mediaRecorderMock).start();
-    }
 }
