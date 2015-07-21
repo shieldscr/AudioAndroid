@@ -43,7 +43,7 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     @Override
     public void play(Context context) {
         File cacheDir = context.getCacheDir();
-        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
+        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording" + "_" + recordingNumber);
         try {
             mediaPlayer.setDataSource(outputFile.toString());
             mediaPlayer.setLooping(true);
@@ -65,10 +65,10 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
         MediaRecordTask mediaRecordTask = new MediaRecordTask();
 
         File cacheDir = context.getCacheDir();
-        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
+        File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording" + "_" + recordingNumber);
         outputFile.deleteOnExit();
 
-        mediaRecorder.setOutputFile(outputFile.toString() + "_" + recordingNumber);
+        mediaRecorder.setOutputFile(outputFile.toString());
 
         mediaRecordTask.doInBackground();
 

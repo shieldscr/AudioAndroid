@@ -73,7 +73,7 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
         AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
 
         localAudioIOUtility.play(mainActivity.getApplicationContext());
-        verify(localMediaPlayerMock).setDataSource(outputFile.toString());
+        verify(localMediaPlayerMock).setDataSource(outputFile.toString() + "_0");
         verify(localMediaPlayerMock).setLooping(true);
         verify(localMediaPlayerMock).prepare();
         verify(localMediaPlayerMock).start();
@@ -128,5 +128,20 @@ public class AudioIOUtilityTest extends RobolectricTestBase {
         verify(mediaRecorderMock).setOutputFile(outputFile.toString() + "_1");
         verify(mediaRecorderMock).prepare();
         verify(mediaRecorderMock).start();
+    }
+
+    @Test
+    public void whenPlayIsCalledItPlaysTheMostRecentRecording() throws IOException {
+        RehearsalAudioRecorder mediaRecorderMock = Mockito.mock(RehearsalAudioRecorder.class);
+        MediaPlayer localMediaPlayerMock = Mockito.mock(MediaPlayer.class);
+        AudioIOUtilityInterface localAudioIOUtility = new AudioIOUtility(mediaRecorderMock, localMediaPlayerMock);
+
+        localAudioIOUtility.startRecording(mainActivity.getApplicationContext(), 1);
+
+        localAudioIOUtility.play(mainActivity.getApplicationContext());
+        verify(localMediaPlayerMock).setDataSource(outputFile.toString() + "_1");
+        verify(localMediaPlayerMock).setLooping(true);
+        verify(localMediaPlayerMock).prepare();
+        verify(localMediaPlayerMock).start();
     }
 }
