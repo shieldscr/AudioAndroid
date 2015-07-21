@@ -13,6 +13,7 @@ import javax.inject.Inject;
 public class AudioIOUtility implements AudioIOUtilityInterface {
 
     private boolean isRecording = false;
+    Integer recordingNumber;
 
     RehearsalAudioRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
@@ -21,11 +22,13 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
     public AudioIOUtility(RehearsalAudioRecorder mediaRecorder, MediaPlayer mediaPlayer) {
         this.mediaRecorder = mediaRecorder;
         this.mediaPlayer = mediaPlayer;
+        this.recordingNumber = 0;
     }
 
     @Override
     public void startRecording(Context context, Integer loopCount) {
         if (!isRecording) {
+            recordingNumber = loopCount;
             initializeAndStartMediaRecorder(context);
         }
     }
@@ -64,7 +67,8 @@ public class AudioIOUtility implements AudioIOUtilityInterface {
         File cacheDir = context.getCacheDir();
         File outputFile = new File(cacheDir.getPath() + "/" + "temp_audio_recording");
         outputFile.deleteOnExit();
-        mediaRecorder.setOutputFile(outputFile.toString());
+
+        mediaRecorder.setOutputFile(outputFile.toString() + "_" + recordingNumber);
 
         mediaRecordTask.doInBackground();
 
