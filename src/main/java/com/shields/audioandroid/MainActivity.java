@@ -86,13 +86,8 @@ public class MainActivity extends BaseActivity {
                 recordButton.setText(R.string.recordButtonText);
                 audioIOUtilityInterface.stopRecording(getApplicationContext());
                 audioIOUtilityInterface.play(getApplicationContext());
-                setupNextRecordingButton();
             }
         }.start();
-    }
-
-    private void setupNextRecordingButton() {
-        recordButton.setClickable(true);
     }
 
     private class RecordButtonMainAnimation implements Animator.AnimatorListener {

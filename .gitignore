@@ -20,3 +20,6 @@ gradle-app.setting
 
 ## OSX crap
 .DS_Store
+
+# Android
+*.apk
