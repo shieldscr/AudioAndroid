@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shields" >
+    package="com.shields">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
         android:name=".audioandroid.AudioAndroidApplication"
-        android:label="@string/appName" >
+        android:label="@string/appName"
+        android:icon="@drawable/ic_launcher">
         <activity
             android:name=".audioandroid.MainActivity"
             android:screenOrientation="portrait" >
